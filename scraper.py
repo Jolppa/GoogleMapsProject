@@ -76,10 +76,9 @@ for location in places['results']:
             print(r'Rating:',location["rating"])
         else:
             print('No ratings.')
-        if "open_now" == True:
-            print('Status: Open') 
-        else: 
-            print('Status: Closed')
+        if "opening_hours" in location:
+            if location["opening_hours"]["open_now"] == True:
+                print('Status: Open')
 
         print('Address:',location['vicinity'],'\n')
 
