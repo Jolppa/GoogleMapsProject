@@ -5,14 +5,15 @@ import json
 gmaps = googlemaps.Client(key="AIzaSyB4LyVDfTiPPS6cLQvRGLJMSTEE0Dp3rLs")
 
 # comments for testing
-# address = 'Joukahaisenkatu 7 Turku'
-address = input('Type in your address: \n')
-# business_input = 'moving company'
-business_input = input('What kind of business/restaurant do you want to search: \n')
+address = 'Joukahaisenkatu 7 Turku'
+# address = input('Type in your address: \n')
+business_input = 'moving company'
+# business_input = input('What kind of business/restaurant do you want to search: \n')
 business = business_input.replace(' ', '_')
-# radius_km = int(5000)/1000
-radius = int(input('Search radius in meters: \n'))
-radius_km = radius/1000
+radius_km = int(5000)/1000
+radius = 5000
+# radius = int(input('Search radius in meters: \n'))
+# radius_km = radius/1000
 
 # address into latitude and longitude values
 address_longlat = gmaps.geocode(address)[0]
@@ -75,8 +76,10 @@ for location in places['results']:
             print(r'Rating:',location["rating"])
         else:
             print('No ratings.')
-        if "open_now" == True:
-            print('Status: Open') 
+            
+        if "opening_hours" in location:
+            if location["opening_hours"]["open_now"] == True:
+                print('Status: Open')
         else: 
             print('Status: Closed')
 
