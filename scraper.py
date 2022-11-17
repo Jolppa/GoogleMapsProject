@@ -79,7 +79,8 @@ for location in places['results']:
         if "opening_hours" in location:
             if location["opening_hours"]["open_now"] == True:
                 print('Status: Open')
-
+        else: 
+            print('Status: Closed')
         print('Address:',location['vicinity'],'\n')
 
         count += 1
