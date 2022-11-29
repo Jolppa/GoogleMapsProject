@@ -108,22 +108,39 @@ button:hover {
   color: #08d;
   border: 2px solid #08d;
 }
-
-.lds-ellipsis {
-  display: inline-block;
+.panel_header {
+  background-color: #08d;
+  border-radius: 12px;
+  box-sizing: border-box;
+  color: #eee;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
   position: relative;
-  width: 80px;
-  height: 80px;
+  align-items: center;
+  place-items: center;
 }
 
-.lds-ellipsis div {
-  position: absolute;
-  top: 33px;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: #eee;
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+ul {
+  color: #eee;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 20px;
+  list-style-type: none;
+      margin: 0;
+      padding: 0;
+  background: transparent;
+  align-items: center;
+}
+
+li {
+  align-items: center;
+  background-color: #15172b;
+  border-radius: 20px;
+  box-sizing: border-box;
+  position: relative;
+  align-items: center;
+  place-items: center;
 }
 
 /* Loader animation */

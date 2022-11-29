@@ -4,7 +4,7 @@ import { useState } from "react";
 const Form = () => {
   const [address, setAddress] = useState("");
   const [radius, setRadius] = useState(null);
-  const [businessType, setBusinessType] = useState("");
+  const [businessType, setBusinessType] = useState("restaurant");
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -24,6 +24,15 @@ const Form = () => {
       return "red";
     }
   };
+
+  const color_open = (open_now) => {
+    if (open_now) {
+      return "green";
+    } else
+      return "red";
+  };
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -84,18 +93,22 @@ const Form = () => {
 
         <button type="submit" className="button"><strong>Submit</strong></button>
       </form>
+
       {loading && <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
+
       {data.length > 0 && (
-        <ul>
+        <ul class="ul">
           {data.map((item) => (
             <li key={item.name}>
-              <h3>{item.name}</h3>
-              <p>{item.address}</p>
-              <p>{`Distance: ${item.distance.value >= 1000 ? `${item.distance.value} kilometers` : item.distance.value } meters`}</p>
+              <h3 className="panel_header">{item.name}</h3>
+              <p3>{item.address}</p3>
+              <p>{`Distance: ${item.distance.value} ${item.distance.unit == "m" ? "meters" : "kilometers"} `}</p>
+
               <p style={{ color: color(item.rating) }}>
                 {isNaN(item.rating) ? item.rating : `Rating: ${item.rating} `}
               </p>
-              <p>{`Open: ${item.open_now}`}</p>
+              <p style={{ color: color_open(item.open_now) }}>{item.open_now ? "Open" : "Closed"}</p>
+              <br></br>
             </li>
           ))}
         </ul>

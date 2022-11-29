@@ -72,7 +72,7 @@ def get_data(address, business_type, radius):
             dist_dict['unit'] = 'm'
                         
         else:        
-            dist_dict['value'] = dist
+            dist_dict['value'] = round(dist, 1)
             dist_dict['unit'] = 'km'            
         
         data_entry['rating'] = location['rating'] if "rating" in location else "No rating"        
