@@ -27,83 +27,62 @@ def distance(lat1, lat2, lon1, lon2):
     # calculate the result
     return round(c * r,3)
 
-
-
        
 # driver code
 
-#! Modify this func to take in the address, business type, and radius as parameters
-def get_data(address, business_type, radius):
+def get_data(address, business_type, radius):   
+    
+    # DOCS: https://googlemaps.github.io/google-maps-services-python/docs/
+     
+    
+    business_type = business_type.replace(' ', '_')        
 
-    # comments for testing
-    # address = 'Joukahaisenkatu 7 Turku'
-    # address = input('Type in your address: \n')
-    # business_input = 'moving company'
-    # business_input = input('What kind of business/restaurant do you want to search: \n')
-    business_type = business_type.replace(' ', '_')
-    # radius_km = int(5000)/1000
-    # radius = int(input('Search radius in meters: \n'))
-    #! error here; radius is a string --> int(radius)
     radius_km = int(radius)/1000
 
-    # address into latitude and longitude values
-    address_longlat = gmaps.geocode(address)[0]
-    lat1 = address_longlat['geometry']['location']['lat']
-    lon1 = address_longlat['geometry']['location']['lng']
 
-    address_longlat = lat1,lon1
+    # address into latitude and longitude values    
+    lat1 = gmaps.geocode(address)[0]['geometry']['location']['lat']
+    lon1 = gmaps.geocode(address)[0]['geometry']['location']['lng']
+        
+
     # returns places nearby
-    places = gmaps.places_nearby(location= address_longlat, type=business_type, rank_by='distance')
-    # print(json.dumps(places, indent=2))
-
-    # with open('json_data.json', 'w') as outfile:
-    # json.dump(places, outfile)
-
-
-    count=1
-    # print('We are looking for a',business_input,'within',radius,'meters \n')
+    places = gmaps.places_nearby(location= [lat1,lon1], type=business_type, rank_by='distance')       
 
     if places['status'] == 'ZERO_RESULTS':
-            print ('No results found with your current parameters.')
-    else:
-        print ('Here are your results: \n')
+            return json.dumps({"success": False, "message": "No results found"}), 200, {"ContentType": "application/json"}
     data = []
     for location in places['results']:
+        # print(location)
         data_entry = {}
         lat2 = location['geometry']['location']['lat']
         lon2 = location['geometry']['location']['lng']
-        business_name = location['name']
-        # data['name'] = business_name
-        data_entry['name'] = business_name
-        if distance(lat1, lat2, lon1, lon2) <= radius_km:
-            print(str(count)+'.')
-            if distance(lat1, lat2, lon1, lon2) >= 1:
-                print(r'The distance to', business_name, 'is:',distance(lat1, lat2, lon1, lon2), "kilometers ")
-                data_entry['distance'] = distance(lat1, lat2, lon1, lon2)
-            else: 
-                print(r'The distance to', business_name, 'is:',distance(lat1, lat2, lon1, lon2)*1000, "meters")
-                data_entry['distance'] = distance(lat1, lat2, lon1, lon2)*1000
-            if "rating" in location:
-                print(r'Rating:',location["rating"])
-                data_entry['rating'] = location["rating"]
-            else:
-                print('No ratings.')
-                data_entry['rating'] = 0
-            
-            if "opening_hours" in location:
-                if "open_now" == True:
-                    print('Status: Open')
-                    data_entry['opening_hours'] = location["opening_hours"]["open_now"]
-                else: 
-                    print('Status: Closed')
-                    data_entry['opening_hours'] = False
+        data_entry['name'] = location['name']        
 
-            print('Address:',location['vicinity'],'\n')
-            data_entry['vicinity'] = location["vicinity"] 
-
-            data.append(data_entry)
-            count += 1
-
-        return json.dumps({data})
+        # calculate distance between two locations
+        dist = distance(lat1, lat2, lon1, lon2)
+        # if distance is more than radius, continue
+        if dist >= radius_km:
+            continue
         
+        dist_dict = {}
+        data_entry['distance'] = dist_dict
+
+        if dist <= 1:
+            dist_dict['value'] = dist * 1000
+            dist_dict['unit'] = 'm'
+                        
+        else:        
+            dist_dict['value'] = dist
+            dist_dict['unit'] = 'km'            
+        
+        data_entry['rating'] = location['rating'] if "rating" in location else "No rating"        
+        data_entry['open_now'] = location['opening_hours']['open_now'] if "opening_hours" in location else "No data"
+
+        data_entry['address'] = location['vicinity']
+
+        data.append(data_entry)        
+
+    return data
+
+  
 
