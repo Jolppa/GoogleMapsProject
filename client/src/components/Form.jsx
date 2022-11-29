@@ -54,20 +54,20 @@ const Form = () => {
         {/* <input type="text" /> */}
     </div>
     <div class="input-container">
-            <input id="Radius" class="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setRadius)} />
-            <label htmlFor="radius" class="placeholder"><strong>Radius in meters (1000) </strong></label>
+            <input id="radius" class="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setRadius)} />
+            <label htmlFor="radius" class="placeholder"><strong>Radius in meters (1000): </strong></label>
         {/* <input type="text" /> */}
     </div>
 
     <div class="input-container"> 
-            <input id="Business" class="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setBusinessType)} />
+            <input id="business" class="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setBusinessType)} />
             <label htmlFor="business" class="placeholder"><strong>Enter a type of business: </strong></label>
         {/* <input type="text" /> */}
     </div>
 
         <button type="submit" class="button"><strong>Submit</strong></button>
       </form>
-      {loading && <div><strong>Loading results...</strong></div>}
+      {loading && <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
       {data.length > 0 && (
         <ul>
           {data.map((item) => (
