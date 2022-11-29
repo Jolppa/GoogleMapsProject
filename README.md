@@ -1,20 +1,37 @@
-# GoogleMapsProject
+# Google Maps Scraper
 App Programming Course 
-Untitled Google Maps Project
+Made by Joel Keskinen, Panu Teräs and Jimi Hietakangas
 
-The plan:
-- Make a google maps scraper that does the following
-1. Input address
-2. Input distance in km for the search area
-3. Input what to search (Pizza, Burger, Law Firm etc.)
-4. Scraper will search restaurants / businesses nearby depending on the search
-5. Scraper will find the closest businesses in your defined area. 
+This scraper parses Google Maps API to get the longitude and latitude from an inputted address. Along with the search radius and the business type, the user is given a list of the nearby businesses within the radius, along with the business address, distance, google rating and business status.
 
-Questions:
-1. API? Which? 
-- https://github.com/googlemaps/google-maps-services-python
+The scraper runs with Python3 and has been built using Flask and React.
+
+## Requirements
+Each request requires an API key. Your personal API key can be generated in [Google Cloud Console](https://developers.google.com/maps/documentation/javascript/get-api-key). Your API key should not be shared. 
+
+Replace ## Google API Key ## with your API Key
+
+## Dependencies
+- [Googlemaps](https://github.com/googlemaps/google-maps-services-python)
+- [Flask]
+- 
+
+## Install
+1. Clone the repository from Github.
+2. Install Python packages from the requirements.txt file.
+    pip install requirements.txt
+3. Install required node-modules in the /client directory.
+    npm install 
+4. Run app.py
+5. Start the React server.
+    npm start
+
+## Built with Google Maps API
+- The project has been made with the [Python Google Maps Geolocation and Places API](https://github.com/googlemaps/google-maps-services-python).
+- You can get your own API key [here](https://developers.google.com/maps/documentation/javascript/get-api-key)
+
+### API Documentation:
 - https://pypi.org/project/googlemaps/
-3. How to calculate distance with the API
-- https://www.geeksforgeeks.org/program-distance-two-points-earth/
-5. Sorting? 
-6. User interface? 
+- https://github.com/googlemaps/google-maps-services-python
+
+
