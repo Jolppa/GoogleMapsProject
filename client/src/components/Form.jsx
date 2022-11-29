@@ -44,37 +44,54 @@ const Form = () => {
     console.log(data);
   };
   return (
-    <div class="form">
-        <div class="title">Google Maps Scraper</div>
-        <div class="subtitle">Start searching places!</div>
+    <div className="form">
+      <div className="title">Google Maps Scraper</div>
+      <div className="subtitle">Start searching places!</div>
     <form onSubmit={(e) => handleSubmit(e)}>
-    <div class="input-container">
-        <input id="address" class="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setAddress)}/>
-          <label htmlFor="address" class="placeholder"><strong>Enter an address: </strong></label>
+        <div className="input-container">
+          <input id="address" className="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setAddress)}/>
+          <label htmlFor="address" className="placeholder"><strong>Enter an address: </strong></label>
         {/* <input type="text" /> */}
     </div>
-    <div class="input-container">
-            <input id="radius" class="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setRadius)} />
-            <label htmlFor="radius" class="placeholder"><strong>Radius in meters (1000): </strong></label>
-        {/* <input type="text" /> */}
-    </div>
-
-    <div class="input-container"> 
-            <input id="business" class="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setBusinessType)} />
-            <label htmlFor="business" class="placeholder"><strong>Enter a type of business: </strong></label>
+        <div className="input-container">
+          <input id="radius" className="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setRadius)} />
+          <label htmlFor="radius" className="placeholder"><strong>Radius in meters (1000): </strong></label>
         {/* <input type="text" /> */}
     </div>
 
-        <button type="submit" class="button"><strong>Submit</strong></button>
+
+        <div className="input-container"> 
+          <select name="businessType" id="business" className="input" onChange={(e) => handleChange(e, setBusinessType)}>
+            <option value="restaurant">Restaurant</option>
+            <option value="bar">Bar</option>
+            <option value="cafe">Cafe</option>
+            <option value="atm">ATM</option>
+            <option value="gym">Gym</option>
+            <option value="church">Church</option>
+            <option value="zoo">Zoo</option>
+            <option value="plumber">Plumber</option>
+            <option value="parking">Parking</option>
+            <option value="airport">Airport</option>
+
+          </select>
+
+         {/* <input id="business" className="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setBusinessType)} /> */}
+
+          <label htmlFor="business" className="placeholder"><strong>Enter a type of business: </strong></label>
+        {/* <input type="text" /> */}
+    </div>
+
+
+        <button type="submit" className="button"><strong>Submit</strong></button>
       </form>
-      {loading && <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
+      {loading && <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
       {data.length > 0 && (
         <ul>
           {data.map((item) => (
             <li key={item.name}>
               <h3>{item.name}</h3>
               <p>{item.address}</p>
-              <p>{`${item.distance.value} meters`}</p>
+              <p>{`Distance: ${item.distance.value >= 1000 ? `${item.distance.value} kilometers` : item.distance.value } meters`}</p>
               <p style={{ color: color(item.rating) }}>
                 {isNaN(item.rating) ? item.rating : `Rating: ${item.rating} `}
               </p>
