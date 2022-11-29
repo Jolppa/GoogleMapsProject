@@ -58,17 +58,15 @@ const Form = () => {
       <div className="subtitle">Start searching places!</div>
     <form onSubmit={(e) => handleSubmit(e)}>
         <div className="input-container">
-          <input id="address" className="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setAddress)}/>
+          <input id="address" className="input" type="text" placeholder=" " required onChange={(e) => handleChange(e, setAddress)}/>
           <label htmlFor="address" className="placeholder"><strong>Enter an address: </strong></label>
         {/* <input type="text" /> */}
     </div>
         <div className="input-container">
-          <input id="radius" className="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setRadius)} />
-          <label htmlFor="radius" className="placeholder"><strong>Radius in meters (1000): </strong></label>
+          <input id="radius" className="input" type="number" placeholder=" " min="1" max="50000" required onChange={(e) => handleChange(e, setRadius)} />
+          <label htmlFor="radius" className="placeholder"><strong>Radius in meters: </strong></label>
         {/* <input type="text" /> */}
     </div>
-
-
         <div className="input-container"> 
           <select name="businessType" id="business" className="input" onChange={(e) => handleChange(e, setBusinessType)}>
             <option value="restaurant">Restaurant</option>
@@ -85,7 +83,7 @@ const Form = () => {
 
          {/* <input id="business" className="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setBusinessType)} /> */}
 
-          <label htmlFor="business" className="placeholder"><strong>Enter a type of business: </strong></label>
+          <label htmlFor="business" className="placeholder"><strong>Choose the business type: </strong></label>
         {/* <input type="text" /> */}
     </div>
 
@@ -102,22 +100,23 @@ const Form = () => {
               <h3 className="panel_header">{item.name}</h3>
               <p3>{item.address}</p3>
               <p>{`Distance: ${item.distance.value} ${item.distance.unit === "m" ? "meters" : "kilometers"} `}</p>
-
               <p style={{ color: color(item.rating) }}>
                 {isNaN(item.rating) ? item.rating : `Rated ${item.rating} `}
               </p>
               <p style={{ color: color_open(item.open_now) }}>{item.open_now ? "Open" : "Closed"}</p>
               <br></br>
             </li>
-          ))}
+          ))} 
         </ul>
       )}
 
+      {/* Fix this so it doesnt show at start */}
       {data.length === 0 && (
         <div className="input-container"> 
           <h3 className="panel_header">No results found.</h3>
         </div>
       )}
+
       {error && <div>{error}</div>}
     </div>
   );
