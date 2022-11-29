@@ -1,18 +1,14 @@
 # Google Maps Scraper
-### App Programming Course 
-> Made by Joel Keskinen, Panu Teräs and Jimi Hietakangas
+> Made by Joel Keskinen, Panu Teräs and Jimi Hietakangas for the app programming course.
 
 This scraper parses Google Maps API to get the longitude and latitude from an inputted address. Along with the search radius and the business type, the user is given a list of the nearby businesses within the radius, along with the business address, distance, google rating and business status.
 
 The application has been built using Python3, Flask and React.
 
-## Requirements
-Each request requires an API key. Your personal API key can be generated in [Google Cloud Console](https://developers.google.com/maps/documentation/javascript/get-api-key). Your API key should not be shared. 
-
-Replace ## Google API Key ## with your API Key
-
 ## Dependencies
 - [Googlemaps](https://github.com/googlemaps/google-maps-services-python)
+Each request requires an API key. Your personal API key can be generated in [Google Cloud Console](https://developers.google.com/maps/documentation/javascript/get-api-key). Your API key should not be shared. 
+
 - [Flask](https://flask.palletsprojects.com/en/2.2.x/)
 - [React](https://reactjs.org/docs/getting-started.html)
 
