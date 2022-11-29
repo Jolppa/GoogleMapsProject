@@ -44,20 +44,26 @@ const Form = () => {
     console.log(data);
   };
   return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="address"><strong>Enter an address: </strong></label>
-        <input type="text" placeholder="Joukahaisenkatu 7 Turku" onChange={(e) => handleChange(e, setAddress)}/>
+    <div class="form">
+        <div class="title">Google Maps Scraper</div>
+        <div class="subtitle">Start searching places!</div>
+    <form onSubmit={(e) => handleSubmit(e)}>
+    <div class="input-container">
+        <input id="address" class="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setAddress)}/>
+          <label htmlFor="address" class="placeholder"><strong>Enter an address: </strong></label>
         {/* <input type="text" /> */}
-        <br></br> 
-        <label htmlFor="radius"><strong>Enter a radius: </strong></label>
-        <input type="text" placeholder="Radius in meters" onChange={(e) => handleChange(e, setRadius)} />
+    </div>
+    <div class="input-container">
+            <input id="Radius" class="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setRadius)} />
+            <label htmlFor="radius" class="placeholder"><strong>Radius in meters (1000) </strong></label>
         {/* <input type="text" /> */}
-        <br></br> 
-        <label htmlFor="business"><strong>Enter a type of business: </strong></label>
-        <input type="text" placeholder="Restaurant, Moving Company, Law Firm" onChange={(e) => handleChange(e, setBusinessType)} />
+    </div>
+
+    <div class="input-container"> 
+            <input id="Business" class="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setBusinessType)} />
+            <label htmlFor="business" class="placeholder"><strong>Enter a type of business: </strong></label>
         {/* <input type="text" /> */}
-        <br></br> 
+    </div>
 
         <button type="submit" class="button"><strong>Submit</strong></button>
       </form>
@@ -83,3 +89,4 @@ const Form = () => {
 };
 
 export default Form;
+
