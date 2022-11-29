@@ -11,7 +11,7 @@ The application has been built using Python3, Flask and React.
 - [React](https://reactjs.org/docs/getting-started.html)
 
 ## Install
-1. Clone the repository from Github. ```https://github.com/pteras/GoogleMapsProject.git``` 
+1. Clone the repository from Github. ```git clone https://github.com/pteras/GoogleMapsProject.git``` 
 2. Install Python packages from the requirements.txt file.
 ```pip install -r requirements.txt```
 3. Install required node-modules in the /client directory.
