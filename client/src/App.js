@@ -1,9 +1,10 @@
-import UserInputField from "./components/UserInputField";
+import Form from "./components/Form";
+import "./styles.css";
 
 function App() {
   return (
     <div className="App">
-      <UserInputField />
+        <Form />
     </div>
   );
 }
