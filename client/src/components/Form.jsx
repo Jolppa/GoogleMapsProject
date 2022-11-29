@@ -81,7 +81,6 @@ const Form = () => {
             <option value="plumber">Plumber</option>
             <option value="parking">Parking</option>
             <option value="airport">Airport</option>
-
           </select>
 
          {/* <input id="business" className="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setBusinessType)} /> */}
@@ -102,16 +101,22 @@ const Form = () => {
             <li key={item.name}>
               <h3 className="panel_header">{item.name}</h3>
               <p3>{item.address}</p3>
-              <p>{`Distance: ${item.distance.value} ${item.distance.unit == "m" ? "meters" : "kilometers"} `}</p>
+              <p>{`Distance: ${item.distance.value} ${item.distance.unit === "m" ? "meters" : "kilometers"} `}</p>
 
               <p style={{ color: color(item.rating) }}>
-                {isNaN(item.rating) ? item.rating : `Rating: ${item.rating} `}
+                {isNaN(item.rating) ? item.rating : `Rated ${item.rating} `}
               </p>
               <p style={{ color: color_open(item.open_now) }}>{item.open_now ? "Open" : "Closed"}</p>
               <br></br>
             </li>
           ))}
         </ul>
+      )}
+
+      {data.length === 0 && (
+        <div className="input-container"> 
+          <h3 className="panel_header">No results found.</h3>
+        </div>
       )}
       {error && <div>{error}</div>}
     </div>

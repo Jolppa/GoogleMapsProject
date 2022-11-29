@@ -124,7 +124,7 @@ button:hover {
 ul {
   color: #eee;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 600;
   border-radius: 20px;
   list-style-type: none;
       margin: 0;
@@ -134,13 +134,10 @@ ul {
 }
 
 li {
-  align-items: center;
   background-color: #15172b;
   border-radius: 20px;
   box-sizing: border-box;
   position: relative;
-  align-items: center;
-  place-items: center;
 }
 
 /* Loader animation */
