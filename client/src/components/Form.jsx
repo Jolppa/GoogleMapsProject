@@ -5,6 +5,7 @@ const Form = () => {
   const [address, setAddress] = useState("");
   const [radius, setRadius] = useState(null);
   const [businessType, setBusinessType] = useState("restaurant");
+  const [isFetched, setIsFetched] = useState(false)
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -46,6 +47,7 @@ const Form = () => {
       body: JSON.stringify({ address, radius, businessType }),
     });
     data = await data.json();
+    setIsFetched(true) 
 
     setLoading(false);
     data.success ? setData(data.data) : setError(data.error);
@@ -63,7 +65,7 @@ const Form = () => {
         {/* <input type="text" /> */}
     </div>
         <div className="input-container">
-          <input id="radius" className="input" type="number" placeholder=" " min="1" max="50000" required onChange={(e) => handleChange(e, setRadius)} />
+          <input id="radius" className="input" type="text" placeholder=" " required onChange={(e) => handleChange(e, setRadius)} />
           <label htmlFor="radius" className="placeholder"><strong>Radius in meters: </strong></label>
         {/* <input type="text" /> */}
     </div>
@@ -110,12 +112,11 @@ const Form = () => {
         </ul>
       )}
 
-      {/* Fix this so it doesnt show at start */}
-      {data.length === 0 && (
+      {data.length === 0 && isFetched &&
         <div className="input-container"> 
           <h3 className="panel_header">No results found.</h3>
         </div>
-      )}
+      }
 
       {error && <div>{error}</div>}
     </div>
