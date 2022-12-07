@@ -1,8 +1,24 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../css/styles.css";
+import httpClient from "../httpClient";
 
 const Form = () => {
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+      const response = await httpClient.get("//localhost:5000/@me");
+      setUser(response.data);
+      } catch (error) {
+        console.log("Not authenticated")
+      }
+    })();
+
+  });
+
   const [address, setAddress] = useState("");
   const [radius, setRadius] = useState(null);
   const [businessType, setBusinessType] = useState("restaurant");
@@ -117,11 +133,23 @@ const Form = () => {
             <strong>Choose the business type: </strong>
           </label>
           {/* <input type="text" /> */}
+
         </div>
 
-        <button type="submit" className="button">
+        {user != null ? (
+          <button type="submit" className="button">
           <strong>Submit</strong>
         </button>
+        ) : (
+            <div>
+              <br></br>
+              <br></br>
+              <a href="/login" className="button">
+              <div className="subtitle">You are not logged in.</div>
+              </a>
+            </div>
+        )}
+
       </form>
 
       {loading && (

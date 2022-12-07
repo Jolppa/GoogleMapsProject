@@ -39,11 +39,16 @@ body {
   margin-top: 30px;
 }
 
+a {
+  text-decoration: none;
+}
+
 .subtitle {
   color: #eee;
   font-size: 16px;
   font-weight: 600;
   margin-top: 10px;
+  text-decoration: none;
 }
 
 .input-container {
@@ -121,21 +126,6 @@ body {
   transition-duration: 0.4;
   margin-right: 10px;
 }
-.regbtn {
-  background-color: #08d;
-  border-radius: 12px;
-  border: 0;
-  padding: 5px;
-  color: #eee;
-  cursor: pointer;
-  font-size: 12px;
-  height: 30px;
-  margin-top: 1px;
-  text-align: center;
-  width: 30%;
-  transition-duration: 0.4;
-  margin-left: 10px;
-}
 
 .button:active {
   background-color: #08d;
@@ -180,10 +170,13 @@ li {
 
 /* Loader animation */
 .lds-ellipsis {
+  text-align: center;
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .lds-ellipsis div {

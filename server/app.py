@@ -7,7 +7,6 @@ from config import ApplicationConfig
 from flask_session import Session
 import json
 
-
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
 
@@ -19,7 +18,6 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-@cross_origin
 @app.route("/api/scraper", methods=["POST"])
 def fetch_data():
     form_data = request.get_json()
@@ -49,12 +47,12 @@ def register_user():
         "username": new_user.username
     })
 
-@cross_origin
+
 @app.route("/@me")
 def get_current_user():
     user_id = session.get("user_id")
 
-    if not user_id: 
+    if not user_id:
         return jsonify({"error": "Unauthorized"}), 401
 
     user = User.query.filter_by(id=user_id).first()
@@ -63,7 +61,6 @@ def get_current_user():
         "username": user.username
     })
 
-@cross_origin
 @app.route("/login", methods=["POST"])
 def login_user():
     username = request.json["username"]
