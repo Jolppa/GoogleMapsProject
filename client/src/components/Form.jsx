@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import "../css/styles.css"
 
 const Form = () => {
+
   const [address, setAddress] = useState("");
   const [radius, setRadius] = useState(null);
   const [businessType, setBusinessType] = useState("restaurant");
@@ -33,8 +35,6 @@ const Form = () => {
       return "red";
   };
 
-
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -56,6 +56,11 @@ const Form = () => {
   };
   return (
     <div className="form">
+      <div >
+        <a href="/login">
+        <button className="logbtn"><strong>Login</strong></button>
+        </a>
+      </div>
       <div className="title">Google Maps Scraper</div>
       <div className="subtitle">Start searching places!</div>
     <form onSubmit={(e) => handleSubmit(e)}>
@@ -97,6 +102,7 @@ const Form = () => {
 
       {data.length > 0 && (
         <ul class="ul">
+          <br></br>
           {data.map((item) => (
             <li key={item.name}>
               <h3 className="panel_header">{item.name}</h3>
@@ -119,9 +125,9 @@ const Form = () => {
       }
 
       {error && <div>{error}</div>}
+
     </div>
   );
 };
 
 export default Form;
-

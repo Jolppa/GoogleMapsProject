@@ -1,6 +1,5 @@
-.App {
-  text-align: center;
-  font-family: 'Roboto', serif;
+* {
+  font-family: 'Roboto', sans-serif
 }
 
 body {
@@ -19,7 +18,16 @@ body {
   background-color: #15172b;
   border-radius: 20px;
   box-sizing: border-box;
-  height: 500px;
+  height: 550px;
+  padding: 20px;
+  width: 320px;
+}
+
+.form_login {
+  background-color: #15172b;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 400px;
   padding: 20px;
   width: 320px;
 }
@@ -88,16 +96,45 @@ body {
   background-color: #08d;
   border-radius: 12px;
   border: 0;
-  box-sizing: border-box;
   color: #eee;
   cursor: pointer;
   font-size: 18px;
   height: 50px;
   margin-top: 38px;
-  outline: 0;
   text-align: center;
   width: 100%;
   transition-duration: 0.4;
+}
+
+.logbtn {
+  background-color: #08d;
+  border-radius: 12px;
+  border: 0;
+  padding: 5px;
+  color: #eee;
+  cursor: pointer;
+  font-size: 12px;
+  height: 30px;
+  margin-top: 1px;
+  text-align: center;
+  width: 30%;
+  transition-duration: 0.4;
+  margin-right: 10px;
+}
+.regbtn {
+  background-color: #08d;
+  border-radius: 12px;
+  border: 0;
+  padding: 5px;
+  color: #eee;
+  cursor: pointer;
+  font-size: 12px;
+  height: 30px;
+  margin-top: 1px;
+  text-align: center;
+  width: 30%;
+  transition-duration: 0.4;
+  margin-left: 10px;
 }
 
 .button:active {
@@ -123,6 +160,7 @@ button:hover {
 
 ul {
   color: #eee;
+  text-align: center;
   font-size: 16px;
   font-weight: 600;
   border-radius: 20px;
