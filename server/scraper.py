@@ -1,8 +1,9 @@
 import googlemaps
 from math import radians, cos, sin, asin, sqrt
 import json
+import os
 
-gmaps = googlemaps.Client(key="AIzaSyB4LyVDfTiPPS6cLQvRGLJMSTEE0Dp3rLs")
+gmaps = googlemaps.Client(key=os.environ["GMAPS_KEY"])
 
 # calculates distance between two locations
 def distance(lat1, lat2, lon1, lon2):

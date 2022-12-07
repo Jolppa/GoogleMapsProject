@@ -1,13 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import "../css/styles.css"
+import "../css/styles.css";
 
 const Form = () => {
-
   const [address, setAddress] = useState("");
   const [radius, setRadius] = useState(null);
   const [businessType, setBusinessType] = useState("restaurant");
-  const [isFetched, setIsFetched] = useState(false)
+  const [isFetched, setIsFetched] = useState(false);
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -31,8 +30,7 @@ const Form = () => {
   const color_open = (open_now) => {
     if (open_now) {
       return "green";
-    } else
-      return "red";
+    } else return "red";
   };
 
   const handleSubmit = async (event) => {
@@ -47,7 +45,7 @@ const Form = () => {
       body: JSON.stringify({ address, radius, businessType }),
     });
     data = await data.json();
-    setIsFetched(true) 
+    setIsFetched(true);
 
     setLoading(false);
     data.success ? setData(data.data) : setError(data.error);
@@ -56,26 +54,51 @@ const Form = () => {
   };
   return (
     <div className="form">
-      <div >
+      <div>
         <a href="/login">
-        <button className="logbtn"><strong>Login</strong></button>
+          <button className="logbtn">
+            <strong>Login</strong>
+          </button>
         </a>
       </div>
       <div className="title">Google Maps Scraper</div>
       <div className="subtitle">Start searching places!</div>
-    <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className="input-container">
-          <input id="address" className="input" type="text" placeholder=" " required onChange={(e) => handleChange(e, setAddress)}/>
-          <label htmlFor="address" className="placeholder"><strong>Enter an address: </strong></label>
-        {/* <input type="text" /> */}
-    </div>
+          <input
+            id="address"
+            className="input"
+            type="text"
+            placeholder=" "
+            required
+            onChange={(e) => handleChange(e, setAddress)}
+          />
+          <label htmlFor="address" className="placeholder">
+            <strong>Enter an address: </strong>
+          </label>
+          {/* <input type="text" /> */}
+        </div>
         <div className="input-container">
-          <input id="radius" className="input" type="text" placeholder=" " required onChange={(e) => handleChange(e, setRadius)} />
-          <label htmlFor="radius" className="placeholder"><strong>Radius in meters: </strong></label>
-        {/* <input type="text" /> */}
-    </div>
-        <div className="input-container"> 
-          <select name="businessType" id="business" className="input" onChange={(e) => handleChange(e, setBusinessType)}>
+          <input
+            id="radius"
+            className="input"
+            type="text"
+            placeholder=" "
+            required
+            onChange={(e) => handleChange(e, setRadius)}
+          />
+          <label htmlFor="radius" className="placeholder">
+            <strong>Radius in meters: </strong>
+          </label>
+          {/* <input type="text" /> */}
+        </div>
+        <div className="input-container">
+          <select
+            name="businessType"
+            id="business"
+            className="input"
+            onChange={(e) => handleChange(e, setBusinessType)}
+          >
             <option value="restaurant">Restaurant</option>
             <option value="bar">Bar</option>
             <option value="cafe">Cafe</option>
@@ -88,17 +111,27 @@ const Form = () => {
             <option value="airport">Airport</option>
           </select>
 
-         {/* <input id="business" className="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setBusinessType)} /> */}
+          {/* <input id="business" className="input" type="text" placeholder=" " onChange={(e) => handleChange(e, setBusinessType)} /> */}
 
-          <label htmlFor="business" className="placeholder"><strong>Choose the business type: </strong></label>
-        {/* <input type="text" /> */}
-    </div>
+          <label htmlFor="business" className="placeholder">
+            <strong>Choose the business type: </strong>
+          </label>
+          {/* <input type="text" /> */}
+        </div>
 
-
-        <button type="submit" className="button"><strong>Submit</strong></button>
+        <button type="submit" className="button">
+          <strong>Submit</strong>
+        </button>
       </form>
 
-      {loading && <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
+      {loading && (
+        <div className="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      )}
 
       {data.length > 0 && (
         <ul class="ul">
@@ -107,25 +140,28 @@ const Form = () => {
             <li key={item.name}>
               <h3 className="panel_header">{item.name}</h3>
               <p3>{item.address}</p3>
-              <p>{`Distance: ${item.distance.value} ${item.distance.unit === "m" ? "meters" : "kilometers"} `}</p>
+              <p>{`Distance: ${item.distance.value} ${
+                item.distance.unit === "m" ? "meters" : "kilometers"
+              } `}</p>
               <p style={{ color: color(item.rating) }}>
                 {isNaN(item.rating) ? item.rating : `Rated ${item.rating} `}
               </p>
-              <p style={{ color: color_open(item.open_now) }}>{item.open_now ? "Open" : "Closed"}</p>
+              <p style={{ color: color_open(item.open_now) }}>
+                {item.open_now ? "Open" : "Closed"}
+              </p>
               <br></br>
             </li>
-          ))} 
+          ))}
         </ul>
       )}
 
-      {data.length === 0 && isFetched &&
-        <div className="input-container"> 
+      {data.length === 0 && isFetched && (
+        <div className="input-container">
           <h3 className="panel_header">No results found.</h3>
         </div>
-      }
+      )}
 
       {error && <div>{error}</div>}
-
     </div>
   );
 };
