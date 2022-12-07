@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, session
 from models import db, User
 from flask_bcrypt import Bcrypt
 from scraper import get_data
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from config import ApplicationConfig
 from flask_session import Session
 import json
