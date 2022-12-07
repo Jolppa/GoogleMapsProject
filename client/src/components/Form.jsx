@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../css/styles.css";
 import httpClient from "../httpClient";
 
@@ -7,16 +7,16 @@ const Form = () => {
 
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
+  // TODO: Fix this so it doesn't do unneccesary requests
+  useState (() => {
     (async () => {
       try {
       const response = await httpClient.get("//localhost:5000/@me");
-      setUser(response.data);
+      setUser(response.data.username);
       } catch (error) {
         console.log("Not authenticated")
       }
     })();
-
   });
 
   const [address, setAddress] = useState("");
@@ -71,11 +71,19 @@ const Form = () => {
   return (
     <div className="form">
       <div>
-        <a href="/login">
-          <button className="logbtn">
-            <strong>Login</strong>
-          </button>
-        </a>
+        {user != null ? (
+          <a href="/login">
+            <div className="subtitle">
+              <strong>Logged in as {user}</strong>
+            </div>
+          </a>
+        ) : (
+          <a href="/login">
+            <button className="logbtn">
+              <strong>Login</strong>
+            </button>
+          </a>
+        )}
       </div>
       <div className="title">Google Maps Scraper</div>
       <div className="subtitle">Start searching places!</div>
@@ -162,7 +170,7 @@ const Form = () => {
       )}
 
       {data.length > 0 && (
-        <ul class="ul">
+        <ul className="ul">
           <br></br>
           {data.map((item) => (
             <li key={item.name}>
