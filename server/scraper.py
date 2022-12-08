@@ -1,8 +1,9 @@
 import googlemaps
 from math import radians, cos, sin, asin, sqrt
 import json
+from decouple import config
 
-gmaps = googlemaps.Client(key="AIzaSyB4LyVDfTiPPS6cLQvRGLJMSTEE0Dp3rLs")
+gmaps = googlemaps.Client(key = config('GMAPS_KEY'))
 
 # calculates distance between two locations
 def distance(lat1, lat2, lon1, lon2):
@@ -72,7 +73,7 @@ def get_data(address, business_type, radius):
             dist_dict['unit'] = 'm'
                         
         else:        
-            dist_dict['value'] = dist
+            dist_dict['value'] = round(dist, 1)
             dist_dict['unit'] = 'km'            
         
         data_entry['rating'] = location['rating'] if "rating" in location else "No rating"        
