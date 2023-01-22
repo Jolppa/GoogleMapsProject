@@ -3,7 +3,7 @@
 
 This scraper parses Google Maps API in order get the longitude and latitude from an inputted address, which when used along with the search radius and the business type, the user is given a list of the nearby businesses within the radius, along with the business address, distance, google rating and the business status.
 
-The application has been built using Python3, Flask and React. Database integration has been done with redis, axios and SCLAlchemy.
+The application has been built using Python3, Flask and React. Database integration has been done with redis, axios and SQLAlchemy.
 
 To use log in, first register an user. Use the /register route in app.py. 
 
