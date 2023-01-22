@@ -5,7 +5,7 @@ This scraper parses Google Maps API in order get the longitude and latitude from
 
 The application has been built using Python3, Flask and React. Database integration has been done with redis, axios and SQLAlchemy.
 
-To use log in, first register an user. Use the /register route in app.py. 
+To use log in, first register an user. Use the /register route in app.py. This end-point is not accessable from the front-end as of now, so you need to use Postman or some other tool to reach that end-point. It is expecting an username and a password in JSON format.
 
 ## Dependencies
 - [Googlemaps](https://github.com/googlemaps/google-maps-services-python)
@@ -27,7 +27,7 @@ To use log in, first register an user. Use the /register route in app.py.
 ## Built with Google Maps API
 - The project has been made with the [Python Google Maps Geolocation and Places API](https://github.com/googlemaps/google-maps-services-python).
 - Each request requires an API key. Your personal API key can be generated in [Google Cloud Console](https://developers.google.com/maps/documentation/javascript/get-api-key). Your API key should not be shared. 
-- The API key can be found in th .env file.
+- The API key should be placed in the .env file.
 
 
 ### API Documentation:
